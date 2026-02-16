@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Projets — Antoine Lucas</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="starfield"></canvas>
+<nav class="navbar">
+<div class="nav-inner">
+<a class="brand" href="index.html">Menu</a>
+<button class="nav-toggle">☰</button>
+<div class="nav-links">
+<a href="about.html">À propos</a>
+<a href="projets.html">Projets</a>
+<a href="contact.html" class="btn small">Contact</a>
+</div>
+</div>
+</nav>
+
+<main class="container">
+<header class="projects-header">
+<h1>Projets sélectionnés</h1>
+<p>Découvrez une sélection de mes réalisations académiques et personnelles.</p>
+</header>
+
+<section class="projects-grid">
+
+<article class="project-card" data-project="sae_iot">
+<img src="sgdf.png" alt="Projet IoT Datacenter">
+<div class="project-body">
+<h3>SAÉ 4.IOM.01 | IoT Datacenter</h3>
+<p>Supervision d'un datacenter par zones : programmation de capteurs IoT, traitement via Node-RED et stockage InfluxDB.</p>
+<button class="btn ghost">Voir les détails</button>
+</div>
+</article>
+
+<article class="project-card" data-project="sae_video">
+<img src="fff.png" alt="Projet Serveur Vidéo">
+<div class="project-body">
+<h3>SAÉ 301 | Transmission vidéo</h3>
+<p>Conception d'un serveur vidéo avec streaming multi-qualité et développement d'une interface web cliente.</p>
+<button class="btn ghost">Voir les détails</button>
+</div>
+</article>
+
+<article class="project-card" data-project="projet3">
+<img src="aaa.png" alt="Projet SAÉ 501">
+<div class="project-body">
+<h3>SAÉ 5.01 | Solution technique</h3>
+<p>Création d'une infrastructure réseau complexe inspirée des WorldSkills et gestion de projet.</p>
+<button class="btn ghost">Voir les détails</button>
+</div>
+</article>
+
+</section>
+
+<div id="project-modal" class="modal hidden">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+    <img id="modal-img" src="" alt="">
+    <h3 id="modal-title"></h3>
+    <p id="modal-text"></p>
+  </div>
+</div>
+
+</main>
+
+<footer class="site-footer">
+<p>© 2025 Antoine Lucas</p>
+</footer>
+
+<script src="assets/script.js"></script>
+
+<script>
+const modal = document.getElementById("project-modal");
+const modalImg = document.getElementById("modal-img");
+const modalTitle = document.getElementById("modal-title");
+const modalText = document.getElementById("modal-text");
+
+const projectData = {
+  sae_iot: {
+    img: "sgdf.png",
+    title: "SAÉ 4.IOM.01 | Implémenter les réseaux sans fil dédiés à l'IoT",
+    text: `Dans le cadre de cette SAÉ, l'objectif principal était d'équiper un datacenter avec des capteurs IoT afin d'en assurer la supervision physique et environnementale. 
+
+Le datacenter étant divisé en plusieurs zones distinctes ayant des exigences différentes, il a fallu programmer les capteurs de manière spécifique pour qu'ils s'adaptent aux besoins précis de chaque environnement.
+
+L'enjeu technique majeur consistait à récupérer les métriques de ces capteurs dispersés, puis de centraliser ces données. Pour y parvenir, nous avons conçu des flux de données avec Node-RED. Cet outil nous a permis de traiter efficacement les informations entrantes et de les acheminer pour les enregistrer de manière pérenne sur une base de données temporelle InfluxDB.
+
+<strong>Ce que ce projet m'a apporté :</strong>
+Cette expérience m'a permis de consolider mes compétences pratiques en programmation et déploiement d'objets connectés (IoT) dans un environnement critique comme un datacenter. J'ai pu acquérir une véritable aisance avec des outils standards de l'industrie pour le traitement de flux de données (Node-RED) et l'administration de bases de données spécialisées (InfluxDB). Enfin, ce projet m'a appris à concevoir une architecture de collecte de métriques de bout en bout, de la captation physique jusqu'au stockage.`
+  },
+  sae_video: {
+    img: "fff.png",
+    title: "SAÉ 301 | Mettre en oeuvre un système de transmission",
+    text: `L'objectif de cette SAÉ était de concevoir et déployer un système complet de transmission vidéo reposant sur une architecture client-serveur.
+
+Nous avons mis en place un serveur capable de stocker et de diffuser des flux vidéo en continu, en proposant plusieurs niveaux de résolution pour s'adapter à la bande passante du client. En parallèle, nous avons développé de zéro une interface web complète pour offrir aux utilisateurs une navigation fluide dans le catalogue de vidéos et un lecteur intégré ergonomique.
+
+<strong>Ce que ce projet m'a apporté :</strong>
+Cette réalisation m'a permis de comprendre concrètement les enjeux de la diffusion multimédia en réseau et le fonctionnement des protocoles de streaming. J'ai également considérablement renforcé mes compétences en développement web pour la création de l'interface graphique, tout en consolidant ma vision globale d'une infrastructure client-serveur et de l'optimisation des flux de données.`
+  },
+  projet3: {
+    img: "aaa.png",
+    title: "SAÉ 5.01 | Concevoir, réaliser et présenter une solution technique",
+    text: `Lors de la SAÉ 501, nous avons relevé le défi de créer une infrastructure réseau complexe et complète, en nous inspirant directement des compétitions WorldSkills.
+
+Ce projet comportait de nombreuses configurations techniques pointues, telles que la gestion du routage, la mise en place de VLANs avec VTP et la gestion de certificats pour DNSSEC. Face à un calendrier très serré, nous avons dû faire des choix stratégiques, comme prioriser le cœur de réseau plutôt que le bon fonctionnement de tous les services annexes, afin de garantir une fonctionnalité globale.
+
+<strong>Ce que ce projet m'a apporté :</strong>
+Cette SAÉ a été extrêmement enrichissante tant sur le plan technique que sur celui de la gestion de projet. J'ai appris à utiliser des outils comme Trello et à animer des réunions quotidiennes pour coordonner notre équipe. Surtout, j'ai compris que la rigueur méthodologique (planifier, tester, valider) est tout aussi importante que la maîtrise technique. Enfin, j'ai développé ma capacité à gérer la pression, à collaborer efficacement en partageant des idées de manière constructive, et à déployer des solutions techniques complexes en équipe.`
+  }
+};
+
+document.querySelectorAll(".project-card").forEach(card => {
+  card.addEventListener("click", () => {
+    const id = card.dataset.project;
+    const data = projectData[id];
+    
+    modalImg.src = data.img;
+    modalTitle.textContent = data.title;
+    modalText.innerHTML = data.text.replace(/\n/g, "<br>");
+    
+    modal.classList.remove("hidden");
+  });
+});
+
+document.querySelector(".close-modal").addEventListener("click", () => {
+  modal.classList.add("hidden");
+});
+
+modal.addEventListener("click", (e) => {
+  if (e.target === modal) modal.classList.add("hidden");
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Antoine Lucas — Portfolio</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+<canvas id="starfield"></canvas>
+<nav class="navbar">
+<div class="nav-inner">
+<a class="brand" href="index.html">Menu</a>
+<button class="nav-toggle" aria-label="Ouvrir le menu">☰</button>
+<div class="nav-links">
+<a href="about.html">À propos</a>
+<a href="projets.html">Projets</a>
+<a href="contact.html" class="btn small">Contact</a>
+</div>
+</div>
+</nav>
+
+<main class="container">
+<section class="hero">
+<div class="hero-left">
+<h1 class="title">Antoine LUCAS</h1>
+<p class="lead">Etudiant en Ecole d'Ingenieur spécialité Cybersécurité, je suis passionné par les réseaux et la cybersécurité</p>
+<p class="lead">Je suis a la recherche d'une alternance pour la rentrée 2026</p>
+<div class="actions">
+<a class="btn primary" href="projets.html">Voir mes projets</a>
+<a class="btn ghost" href="about.html">En savoir plus</a>
+</div>
+</div>
+
+<div class="hero-right">
+  <div class="project-card" data-project="featured">
+    <img src="Projetselectionne.PNG" alt="Projet sélectionné">
+    <div class="card-caption">Projet sélectionné : Concevoir un réseau multisites</div>
+  </div>
+</div>
+
+<div id="project-modal" class="modal hidden">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+    <img id="modal-img" src="" alt="">
+    <h3 id="modal-title"></h3>
+    <p id="modal-text"></p>
+  </div>
+</div>
+
+<section class="intro-grid">
+<article class="feature">
+<h3>Systèmes</h3>
+<p>Administration Linux (Debian, Ubuntu) & Windows Server, Scripts Bash (automatisation de tâches)</p>
+</article>
+<article class="feature">
+<h3>Réseaux</h3>
+<p>Configuration de switchs et routeurs Cisco, Mise en place d’architectures réseau simples</p>
+</article>
+<article class="feature">
+<h3>Cybersécurité</h3>
+<p>Bases en sécurisation de datacenter avec des capteurs, Réaction en situation de crise (exercices de gestion)</p>
+</article>
+<article class="feature">
+<h3>Programmation</h3>
+<p>Bash, Java, C++</p>
+</article>
+<article class="feature">
+<h3>Méthodologie</h3>
+<p>Agile - Gestion de projet</p>
+</article>
+<article class="feature">
+<h3>Soft Skills</h3>
+<p>Esprit d’équipe, Esprit d’analyse, Méthodique, Réactif</p>
+</article>
+</section>
+
+</main>
+
+<footer class="site-footer">
+<p>© 2025 Antoine Lucas — <a href="mailto:hello@exemple.com">antoine.lucas24@gmail.com</a></p>
+</footer>
+
+<script src="assets/script.js"></script>
+
+<script>
+const modal = document.getElementById("project-modal");
+const modalImg = document.getElementById("modal-img");
+const modalTitle = document.getElementById("modal-title");
+const modalText = document.getElementById("modal-text");
+
+const projectData = {
+  featured: {
+  img: "projetselectionne.png",
+  title: "SAE 303 : Concevoir un Réseau Multisites",
+  text: `Dans le cadre de la SAE 303, notre objectif était de concevoir de A à Z l’infrastructure réseau complète d’une entreprise multisites. 
+L’organisation comportait trois implantations : un siège social, un magasin et un showroom. Il fallait donc imaginer, planifier et déployer un réseau capable de relier ces sites de manière cohérente, sécurisée et performante.
+
+Nous avons mis en place le cœur du réseau en utilisant plusieurs technologies avancées : OSPF pour le routage interne, MP-BGP pour le transport multi-sites, VRF pour la segmentation logique ainsi qu'une architecture hiérarchisée assurant la cohérence du réseau.
+
+Chaque site devait également disposer de services essentiels : serveur DNS, serveur DHCP, téléphonie IP, stockage de fichiers, gestion des VLAN et sécurité, ainsi que des mécanismes de redondance pour assurer la continuité des services.
+
+Le projet était ambitieux et devait être réalisé dans un temps restreint, ce qui représentait un véritable défi. Malgré cela, nous avons pu implémenter la quasi-totalité du réseau. Le seul élément non finalisé est le portail captif, qui demandait un temps supplémentaire.
+
+Cette SAE nous a permis de renforcer nos compétences en architecture réseau, en administration système, mais aussi en gestion de projet et travail collaboratif. Une expérience complète, réaliste et très formatrice.`
+}
+
+};
+
+document.querySelectorAll(".project-card").forEach(card => {
+  card.addEventListener("click", () => {
+    const id = card.dataset.project;
+    const data = projectData[id];
+
+    modalImg.src = data.img;
+    modalTitle.textContent = data.title;
+    modalText.innerHTML = data.text.replace(/\n/g, "<br>");
+
+    modal.classList.remove("hidden");
+  });
+});
+
+document.querySelector(".close-modal").addEventListener("click", () => {
+  modal.classList.add("hidden");
+});
+
+modal.addEventListener("click", (e) => {
+  if (e.target === modal) modal.classList.add("hidden");
+});
+</script>
+
+</body>
+</html>
