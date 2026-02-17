@@ -5,6 +5,13 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Projets — Antoine Lucas</title>
 <link rel="stylesheet" href="style.css">
+<style>
+  @media (min-width: 900px) {
+    .projects-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+  }
+</style>
 </head>
 <body>
 <canvas id="starfield"></canvas>
@@ -23,13 +30,13 @@
 <main class="container">
 <header class="projects-header">
 <h1>Projets sélectionnés</h1>
-<p>Découvrez une sélection de mes réalisations académiques et personnelles.</p>
+<p>Découvrez une sélection de mes réalisations académiques et professionnelles.</p>
 </header>
 
 <section class="projects-grid">
 
 <article class="project-card" data-project="sae_iot">
-<img src="sgdf.PNG" alt="Projet IoT Datacenter">
+<img src="sgdf.png" alt="Projet IoT Datacenter">
 <div class="project-body">
 <h3>SAÉ 4.IOM.01 | IoT Datacenter</h3>
 <p>Supervision d'un datacenter par zones : programmation de capteurs IoT, traitement via Node-RED et stockage InfluxDB.</p>
@@ -47,10 +54,19 @@
 </article>
 
 <article class="project-card" data-project="projet3">
-<img src="aaa.PNG" alt="Projet SAÉ 501">
+<img src="aaa.png" alt="Projet SAÉ 501">
 <div class="project-body">
 <h3>SAÉ 5.01 | Solution technique</h3>
 <p>Création d'une infrastructure réseau complexe inspirée des WorldSkills et gestion de projet.</p>
+<button class="btn ghost">Voir les détails</button>
+</div>
+</article>
+
+<article class="project-card" data-project="projet_alternance">
+<img src="pp.png" alt="Projet Alternance">
+<div class="project-body">
+<h3>Projet d'Alternance | Developpement d'un outil de Monitoring Externe</h3>
+<p>Déploiement d'Uptime Kuma pour la supervision de sites clients et développement d'un script d'import automatisé.</p>
 <button class="btn ghost">Voir les détails</button>
 </div>
 </article>
@@ -112,6 +128,18 @@ Ce projet comportait de nombreuses configurations techniques pointues, telles qu
 
 <strong>Ce que ce projet m'a apporté :</strong>
 Cette SAÉ a été extrêmement enrichissante tant sur le plan technique que sur celui de la gestion de projet. J'ai appris à utiliser des outils comme Trello et à animer des réunions quotidiennes pour coordonner notre équipe. Surtout, j'ai compris que la rigueur méthodologique (planifier, tester, valider) est tout aussi importante que la maîtrise technique. Enfin, j'ai développé ma capacité à gérer la pression, à collaborer efficacement en partageant des idées de manière constructive, et à déployer des solutions techniques complexes en équipe.`
+  },
+  projet_alternance: {
+    img: "pp.png",
+    title: "Projet d'Alternance | Déploiement d'une solution de monitoring externe",
+    text: `Lors de mon alternance, l'entreprise ne disposait pas d'outil de monitoring externe permettant de vérifier la disponibilité de notre infrastructure et des sites de nos clients. J'ai donc été chargé de concevoir et déployer une solution répondant à ce besoin critique.
+
+J'ai commencé par une phase de veille et de tests de plusieurs solutions du marché (Node-RED couplé à InfluxDB, Grafana, Zabbix). Mon choix final s'est porté sur Uptime Kuma, un outil open source qui offrait le meilleur compromis entre efficacité et simplicité d'utilisation pour notre environnement.
+
+Face au grand nombre de sites clients à superviser, une saisie manuelle n'était pas envisageable. J'ai donc développé un script python permettant d'extraire automatiquement les informations depuis notre base de données pour importer massivement tous les sites directement dans Uptime Kuma. Bien que le système principal soit opérationnel, le projet nécessitait encore d'implémenter une synchronisation dynamique avec la base de données pour retirer automatiquement les sites dont nous n'avions plus la gestion.
+
+<strong>Ce que ce projet m'a apporté :</strong>
+Cette mission m'a confronté aux réalités d'une infrastructure en production. J'ai appris à mener une étude comparative rigoureuse pour choisir l'outil le plus pertinent face à un besoin métier précis. De plus, le développement du script d'import a renforcé mes compétences en automatisation et en interaction avec des bases de données, tout en me sensibilisant à l'importance de concevoir des solutions capables de gérer un grand volume d'informations.`
   }
 };
 
@@ -120,11 +148,12 @@ document.querySelectorAll(".project-card").forEach(card => {
     const id = card.dataset.project;
     const data = projectData[id];
     
-    modalImg.src = data.img;
-    modalTitle.textContent = data.title;
-    modalText.innerHTML = data.text.replace(/\n/g, "<br>");
-    
-    modal.classList.remove("hidden");
+    if (data) {
+      modalImg.src = data.img;
+      modalTitle.textContent = data.title;
+      modalText.innerHTML = data.text.replace(/\n/g, "<br>");
+      modal.classList.remove("hidden");
+    }
   });
 });
 
